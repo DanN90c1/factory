@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top" > 
+        <img class="logo" src="ktda-holdings-logo.png" alt="Company logo"> <h2><center>Kijani Tea Factory</center></h2></div>
+         <hr class="hr" >
+<div class="middle1" >
+<div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="id">ID:</label><br>
+        <input   type="text" id="id" name="id" required placeholder="Enter your id no. here">
+        <br><label   for="farmNumber" >Farm Number:</label>
+        <input   type="password" placeholder="Farm Number" id="farmNumber" name="farmNumber" required>
+       <br><br> <button type="submit" value="Login" >Log in</button>
+    </form>
+</div></div>
+<div><a href="index.html">Go Home.</a></div>
+<iframe src="footer.html" width="100%"></iframe>
+
+
+<script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get the values from the form
+        var id = document.getElementById("id").value;
+        var farmNumber = document.getElementById("farmNumber").value;
+
+        // Perform authentication (replace this with your authentication logic)
+        if (id === "1" && farmNumber === "4612") {
+            window.location.href="darshboard.html"
+           
+            // Redirect to another page or perform any other action here
+        } else {
+            alert("Invalid ID or farm number. Please try again.");
+            // Clear the form fields
+            document.getElementById("id").value = "";
+            document.getElementById("farmNumber").value = "";
+        }
+    });
+    const sqlite3 = require('sqlite3').verbose();
+
+// Create database connection
+const db = new sqlite3.Database('db.db');
+
+// Query the database to select all rows from the FarmData table
+db.all('SELECT * FROM FarmData', (err, rows) => {
+    if (err) {
+        console.error(err.message);
+        return;
+    }
+    // Print the retrieved rows
+    rows.forEach(row => {
+        console.log(row);
+    });
+
+    // Close the database connection after all queries are complete
+    db.close();
+});
+
+</script>
+
+</body>
+
+</html>
